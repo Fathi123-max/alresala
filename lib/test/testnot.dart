@@ -207,6 +207,7 @@ Future<void> main() async {
   );
 }
 
+// currnt time
 Future<void> _configureLocalTimeZone() async {
   if (kIsWeb || Platform.isLinux) {
     return;
@@ -1951,6 +1952,7 @@ class _HomePageState extends State<HomePage> {
         matchDateTimeComponents: DateTimeComponents.dateAndTime);
   }
 
+//tz
   tz.TZDateTime _nextInstanceOfTenAM() {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduledDate =
