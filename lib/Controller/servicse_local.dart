@@ -6,8 +6,15 @@ Future<List<Azkar>> getLocalAzkarData() async {
 
   List<Azkar> azkarList = azkarFromJson(jsonString);
 
+  return azkarList;
+}
+
+
+
+
+
+
+
   // Iterable decodedJson = json.decode(jsonString);
   // List<Azkar> azkarList =
   //     List<Azkar>.from(decodedJson.map((e) => Azkar.fromJson(e)));
-  return azkarList;
-}
