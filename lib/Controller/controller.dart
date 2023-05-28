@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:resala/Controller/servicse_local.dart';
 import 'package:resala/Model/azkar_model.dart';
+import 'package:resala/services/servicse_local.dart';
 
 class AzkarController extends GetxController {
   var azkarList = <Azkar>[].obs;
