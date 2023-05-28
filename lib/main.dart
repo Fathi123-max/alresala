@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:resala/test/awasom_notifcation.dart';
 import 'package:resala/view/testview.dart';
 
-void main() {
+void main() async {
+  await NotificationController.initializeLocalNotifications();
+
   runApp(const MyApp());
 }
 

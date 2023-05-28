@@ -1,16 +1,12 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 // To parse this JSON data, do
 //
-//     final azkar = azkarFromJson(jsonString);
+//     final allAzkar = allAzkarFromJson(jsonString);
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:resala/Model/one_zekr_model.dart';
-
 List<Azkar> azkarFromJson(String str) =>
     List<Azkar>.from(json.decode(str).map((x) => Azkar.fromJson(x)));
-//
+
 String azkarToJson(List<Azkar> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -19,13 +15,14 @@ class Azkar {
   String? category;
   String? audio;
   String? filename;
-  List<OneZekr>? zekrList;
+  List<Array>? array;
+
   Azkar({
     this.id,
     this.category,
     this.audio,
     this.filename,
-    this.zekrList,
+    this.array,
   });
 
   Azkar copyWith({
@@ -33,70 +30,80 @@ class Azkar {
     String? category,
     String? audio,
     String? filename,
-    List<OneZekr>? zekrList,
-  }) {
-    return Azkar(
-      id: id ?? this.id,
-      category: category ?? this.category,
-      audio: audio ?? this.audio,
-      filename: filename ?? this.filename,
-      zekrList: zekrList ?? this.zekrList,
-    );
-  }
+    List<Array>? array,
+  }) =>
+      Azkar(
+        id: id ?? this.id,
+        category: category ?? this.category,
+        audio: audio ?? this.audio,
+        filename: filename ?? this.filename,
+        array: array ?? this.array,
+      );
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'category': category,
-      'audio': audio,
-      'filename': filename,
-      'zekrList': zekrList?.map((x) => x.toMap()).toList(),
-    };
-  }
+  factory Azkar.fromJson(Map<String, dynamic> json) => Azkar(
+        id: json["id"],
+        category: json["category"],
+        audio: json["audio"],
+        filename: json["filename"],
+        array: json["array"] == null
+            ? []
+            : List<Array>.from(json["array"]!.map((x) => Array.fromJson(x))),
+      );
 
-  factory Azkar.fromMap(Map<String, dynamic> map) {
-    return Azkar(
-      id: map['id'] != null ? map['id'] as int : null,
-      category: map['category'] != null ? map['category'] as String : null,
-      audio: map['audio'] != null ? map['audio'] as String : null,
-      filename: map['filename'] != null ? map['filename'] as String : null,
-      zekrList: map['zekrList'] != null
-          ? List<OneZekr>.from(
-              (map['zekrList'] as List<int>).map<OneZekr?>(
-                (x) => OneZekr.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-    );
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "category": category,
+        "audio": audio,
+        "filename": filename,
+        "array": array == null
+            ? []
+            : List<dynamic>.from(array!.map((x) => x.toJson())),
+      };
+}
 
-  String toJson() => json.encode(toMap());
+class Array {
+  int? id;
+  String? text;
+  int? count;
+  String? audio;
+  String? filename;
 
-  factory Azkar.fromJson(source) =>
-      Azkar.fromMap(source as Map<String, dynamic>);
+  Array({
+    this.id,
+    this.text,
+    this.count,
+    this.audio,
+    this.filename,
+  });
 
-  @override
-  String toString() {
-    return 'Azkar(id: $id, category: $category, audio: $audio, filename: $filename, zekrList: $zekrList)';
-  }
+  Array copyWith({
+    int? id,
+    String? text,
+    int? count,
+    String? audio,
+    String? filename,
+  }) =>
+      Array(
+        id: id ?? this.id,
+        text: text ?? this.text,
+        count: count ?? this.count,
+        audio: audio ?? this.audio,
+        filename: filename ?? this.filename,
+      );
 
-  @override
-  bool operator ==(covariant Azkar other) {
-    if (identical(this, other)) return true;
+  factory Array.fromJson(Map<String, dynamic> json) => Array(
+        id: json["id"],
+        text: json["text"],
+        count: json["count"],
+        audio: json["audio"],
+        filename: json["filename"],
+      );
 
-    return other.id == id &&
-        other.category == category &&
-        other.audio == audio &&
-        other.filename == filename &&
-        listEquals(other.zekrList, zekrList);
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-        category.hashCode ^
-        audio.hashCode ^
-        filename.hashCode ^
-        zekrList.hashCode;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "text": text,
+        "count": count,
+        "audio": audio,
+        "filename": filename,
+      };
 }

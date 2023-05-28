@@ -1,5 +1,17 @@
 PODS:
+  - assets_audio_player (0.0.1):
+    - Flutter
+  - assets_audio_player_web (0.0.1):
+    - Flutter
+  - awesome_notifications (0.0.5):
+    - Flutter
+    - IosAwnCore (= 0.7.3)
+  - device_info_plus (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
+  - flutter_timezone (0.0.1):
+    - Flutter
+  - IosAwnCore (0.7.3)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -9,14 +21,33 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - assets_audio_player (from `.symlinks/plugins/assets_audio_player/ios`)
+  - assets_audio_player_web (from `.symlinks/plugins/assets_audio_player_web/ios`)
+  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
+  - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - system_alert_window (from `.symlinks/plugins/system_alert_window/ios`)
 
+SPEC REPOS:
+  trunk:
+    - IosAwnCore
+
 EXTERNAL SOURCES:
+  assets_audio_player:
+    :path: ".symlinks/plugins/assets_audio_player/ios"
+  assets_audio_player_web:
+    :path: ".symlinks/plugins/assets_audio_player_web/ios"
+  awesome_notifications:
+    :path: ".symlinks/plugins/awesome_notifications/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
+  flutter_timezone:
+    :path: ".symlinks/plugins/flutter_timezone/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   share_plus:
@@ -25,7 +56,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/system_alert_window/ios"
 
 SPEC CHECKSUMS:
+  assets_audio_player: edee322b9cb625571b830b35872ead1a295fd917
+  assets_audio_player_web: 19826380c44375761aa0b9053665c1e3fbc3b86b
+  awesome_notifications: d63d9a25f126860f9a600850d99772237895b3ba
+  device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
+  IosAwnCore: 6494e0e174d49f04f513e8a002187be226889a37
   path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
   system_alert_window: a66510ec18ad7ef4987eff00b6f5ad5d13093910

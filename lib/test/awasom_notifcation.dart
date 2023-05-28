@@ -2,12 +2,6 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<void> main() async {
-  // Always initialize Awesome Notifications
-  await NotificationController.initializeLocalNotifications();
-  runApp(const MyApp());
-}
-
 ///  *********************************************
 ///     NOTIFICATION CONTROLLER
 ///  *********************************************
@@ -57,15 +51,16 @@ class NotificationController {
   ///
   @pragma('vm:entry-point')
   static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {
+      ReceivedAction receivedAction  , ) async {
     if (receivedAction.actionType == ActionType.SilentAction ||
         receivedAction.actionType == ActionType.SilentBackgroundAction) {
       // For background actions, you must hold the execution until the end
       print(
-          'Message sent via notification input: "${receivedAction.buttonKeyInput}"');
+          'Message sent via notification input: "${receivedAction.}"');
       await executeLongTaskInBackground();
+
     } else {
-      MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
+      NotifvationCenter.navigatorKey.currentState?.pushNamedAndRemoveUntil(
           '/notification-page',
           (route) =>
               (route.settings.name != '/notification-page') || route.isFirst,
@@ -79,7 +74,7 @@ class NotificationController {
   ///
   static Future<bool> displayNotificationRationale() async {
     bool userAuthorized = false;
-    BuildContext context = MyApp.navigatorKey.currentContext!;
+    BuildContext context = NotifvationCenter.navigatorKey.currentContext!;
     await showDialog(
         context: context,
         builder: (BuildContext ctx) {
@@ -184,7 +179,8 @@ class NotificationController {
         ]);
   }
 
-  static Future<void> scheduleNewNotification() async {
+  static Future<void> scheduleNewNotification(
+      {String? title, String? body}) async {
     bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) isAllowed = await displayNotificationRationale();
     if (!isAllowed) return;
@@ -193,18 +189,21 @@ class NotificationController {
         content: NotificationContent(
             id: -1, // -1 is replaced by a random number
             channelKey: 'alerts',
-            title: "Huston! The eagle has landed!",
-            body:
-                "A small step for a man, but a giant leap to Flutter's community!",
-            bigPicture: 'https://storage.googleapis.com/cms-storage-bucket/d406c736e7c4c57f5f61.png',
+            title: title ?? " hello ",
+            body: body ?? "hello from body ",
+            bigPicture:
+                'https://storage.googleapis.com/cms-storage-bucket/d406c736e7c4c57f5f61.png',
             largeIcon: 'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
             //'asset://assets/images/balloons-in-sky.jpg',
-            notificationLayout: NotificationLayout.BigPicture,
+            notificationLayout: NotificationLayout.BigText,
             payload: {
               'notificationId': '1234567890'
             }),
         actionButtons: [
-          NotificationActionButton(key: 'REDIRECT', label: 'Redirect'),
+          NotificationActionButton(
+              key: 'REDIRECT',
+              label: 'Play Zekr',
+              actionType: ActionType.SilentAction),
           NotificationActionButton(
               key: 'DISMISS',
               label: 'Dismiss',
@@ -212,7 +211,7 @@ class NotificationController {
               isDangerousOption: true)
         ],
         schedule: NotificationCalendar.fromDate(
-            date: DateTime.now().add(const Duration(seconds: 10))));
+            date: DateTime.now().add(const Duration(seconds: 2))));
   }
 
   static Future<void> resetBadgeCounter() async {
@@ -228,8 +227,8 @@ class NotificationController {
 ///     MAIN WIDGET
 ///  *********************************************
 ///
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class NotifvationCenter extends StatefulWidget {
+  const NotifvationCenter({super.key});
 
   // The navigator key is necessary to navigate using static methods
   static final GlobalKey<NavigatorState> navigatorKey =
@@ -238,10 +237,10 @@ class MyApp extends StatefulWidget {
   static Color mainColor = const Color(0xFF9D50DD);
 
   @override
-  State<MyApp> createState() => _AppState();
+  State<NotifvationCenter> createState() => _AppState();
 }
 
-class _AppState extends State<MyApp> {
+class _AppState extends State<NotifvationCenter> {
   // This widget is the root of your application.
 
   static const String routeHome = '/', routeNotification = '/notification-page';
@@ -285,7 +284,7 @@ class _AppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Awesome Notifications - Simple Example',
-      navigatorKey: MyApp.navigatorKey,
+      navigatorKey: NotifvationCenter.navigatorKey,
       onGenerateInitialRoutes: onGenerateInitialRoutes,
       onGenerateRoute: onGenerateRoute,
       theme: ThemeData(

@@ -17,6 +17,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  assets_audio_player:
+    dependency: "direct main"
+    description:
+      name: assets_audio_player
+      sha256: dcea8cd9c11cd9c34586f2446bfcdf099362159c56f97517ba941ac151974ea9
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.6"
+  assets_audio_player_web:
+    dependency: transitive
+    description:
+      name: assets_audio_player_web
+      sha256: "4575ec40033d818ff022d48f7d46e24c01bc632bd1cd36a4f8b58b38e9aa4a81"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.6"
   async:
     dependency: transitive
     description:
@@ -158,6 +174,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  flutter_ringtone_player:
+    dependency: "direct main"
+    description:
+      name: flutter_ringtone_player
+      sha256: "0b036416fda0654da52221989bd1a8ccd2876cea57f61ecc3a4fc272bd738c67"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   flutter_timezone:
     dependency: "direct main"
     description:
@@ -347,6 +371,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.4"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   share_plus:
     dependency: "direct main"
     description:
