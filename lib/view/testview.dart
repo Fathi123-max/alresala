@@ -1,9 +1,9 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:resala/test/awasom_notifcation.dart';
 
 import '../Controller/controller.dart';
-import '../test/awasom_notifcation.dart';
 
 class AzkarScreen extends StatefulWidget {
   @override
@@ -16,8 +16,6 @@ class _AzkarScreenState extends State<AzkarScreen> {
   final assetsAudioPlayer = AssetsAudioPlayer();
   @override
   void initState() {
-    NotificationController.startListeningNotificationEvents();
-
     super.initState();
   }
 
@@ -37,12 +35,35 @@ class _AzkarScreenState extends State<AzkarScreen> {
                     return Column(
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            NotificationController.scheduleNewNotification(
-                                title:
-                                    "${azkarController.azkarList[0].category}",
-                                body: azkarController
-                                    .AllazkarListFromSabahMassa[index].text);
+                          onTap: () async {
+                            NotificationController.cancelNotifications();
+                            // Get.to(NotifvationCenter());
+                            //   String localTimeZone = await AwesomeNotifications()
+                            //       .getLocalTimeZoneIdentifier();
+                            //   String utcTimeZone = await AwesomeNotifications()
+                            //       .getLocalTimeZoneIdentifier();
+
+                            //   await AwesomeNotifications().createNotification(
+                            //       content: NotificationContent(
+                            //           id: 2,
+                            //           channelKey: 'alerts',
+                            //           title:
+                            //               'Notification at every single minute',
+                            //           body:
+                            //               'This notification was schedule to repeat at every single minute.',
+                            //           notificationLayout:
+                            //               NotificationLayout.BigPicture,
+                            //           bigPicture:
+                            //               'asset://assets/images/melted-clock.png'),
+                            //       schedule: NotificationInterval(
+                            //           interval: 60,
+                            //           timeZone: localTimeZone,
+                            //           repeats: true));
+                            //   NotificationController.scheduleNewNotification(
+                            //       title:
+                            //           "${azkarController.azkarList[0].category}",
+                            //       body: azkarController
+                            //           .AllazkarListFromSabahMassa[index].text);
                           }
 
                           //  assetsAudioPlayer.open(

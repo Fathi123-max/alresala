@@ -51,21 +51,21 @@ class NotificationController {
   ///
   @pragma('vm:entry-point')
   static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction  , ) async {
-    if (receivedAction.actionType == ActionType.SilentAction ||
-        receivedAction.actionType == ActionType.SilentBackgroundAction) {
-      // For background actions, you must hold the execution until the end
-      print(
-          'Message sent via notification input: "${receivedAction.}"');
-      await executeLongTaskInBackground();
-
-    } else {
-      NotifvationCenter.navigatorKey.currentState?.pushNamedAndRemoveUntil(
-          '/notification-page',
-          (route) =>
-              (route.settings.name != '/notification-page') || route.isFirst,
-          arguments: receivedAction);
-    }
+    ReceivedAction receivedAction,
+  ) async {
+    // if (receivedAction.actionType == ActionType.SilentAction ||
+    //     receivedAction.actionType == ActionType.SilentBackgroundAction) {
+    //   // For background actions, you must hold the execution until the end
+    //   print(
+    //       'Message sent via notification input: "${receivedAction.buttonKeyInput}"');
+    //   await executeLongTaskInBackground();
+    // } else {
+    NotifvationCenter.navigatorKey.currentState?.pushNamedAndRemoveUntil(
+        '/notification-page',
+        (route) =>
+            (route.settings.name != '/notification-page') || route.isFirst,
+        arguments: receivedAction);
+    // }
   }
 
   ///  *********************************************
